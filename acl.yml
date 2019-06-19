@@ -1,0 +1,29 @@
+# Access Control List (ACL)
+---
+- group: admin
+  permissions: # Allow admin full access
+    - resource: "*"
+      methods: "*"
+      action: allow
+- group: user
+  permissions: # Deny dashboard, but allow everything else
+    - resource: dashboard/*
+      methods: "*"
+      action: deny
+    - resource: "*"
+      methods: "*"
+      action: allow
+- group: guest
+  permissions: # Allow only homepage and login/register
+    - resource: "/"
+      methods:
+        - GET
+      action: allow
+    - resource: users/login
+      methods:
+        - POST
+      action: allow
+    - resource: users/register
+      methods:
+        - POST
+      action: allow
